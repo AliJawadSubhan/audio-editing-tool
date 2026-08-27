@@ -1,13 +1,10 @@
 import 'dart:developer';
 
-import 'package:downloadsfolder/downloadsfolder.dart';
 import 'package:example/audio_view_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:audio_editing_tool/src/controller/audio_controller.dart';
-import 'package:audio_editing_tool/src/helper/audio_helper.dart';
+import 'package:audio_editing_tool/audio_editing_tool.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'dart:developer' as dev; // Standard import for log()
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -278,9 +275,9 @@ class _HelperDemoPageState extends State<HelperDemoPage> {
       _successMessage = null;
     });
     try {
-      final result = await FilePicker.platform.pickFiles(type: FileType.audio);
-      if (result != null && result.files.single.path != null) {
-        _selectedFile = result.files.single.path;
+      final result = await FilePicker.pickFiles(type: FileType.audio);
+      if (result.isNotEmpty && result.single.path != null) {
+        _selectedFile = result.single.path;
         _outputFile = _selectedFile;
         _audioDuration = await getAudioDuration(_selectedFile!);
         if (_audioDuration != null) {
@@ -300,28 +297,28 @@ class _HelperDemoPageState extends State<HelperDemoPage> {
   }
 
   Future<void> _pickMergeFile() async {
-    final result = await FilePicker.platform.pickFiles(type: FileType.audio);
-    if (result != null && result.files.single.path != null) {
+    final result = await FilePicker.pickFiles(type: FileType.audio);
+    if (result.isNotEmpty && result.single.path != null) {
       setState(() {
-        _mergeFile = result.files.single.path;
+        _mergeFile = result.single.path;
       });
     }
   }
 
   Future<void> _pickWatermarkFile() async {
-    final result = await FilePicker.platform.pickFiles(type: FileType.audio);
-    if (result != null && result.files.single.path != null) {
+    final result = await FilePicker.pickFiles(type: FileType.audio);
+    if (result.isNotEmpty && result.single.path != null) {
       setState(() {
-        _watermarkFile = result.files.single.path;
+        _watermarkFile = result.single.path;
       });
     }
   }
 
   Future<void> _pickCrossfadeFile() async {
-    final result = await FilePicker.platform.pickFiles(type: FileType.audio);
-    if (result != null && result.files.single.path != null) {
+    final result = await FilePicker.pickFiles(type: FileType.audio);
+    if (result.isNotEmpty && result.single.path != null) {
       setState(() {
-        _crossfadeFile = result.files.single.path;
+        _crossfadeFile = result.single.path;
       });
     }
   }

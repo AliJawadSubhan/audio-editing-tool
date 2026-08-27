@@ -120,7 +120,7 @@ class CoreAudioEditingTools {
       final cmd =
           '-y -i "$input" -af "afade=t=out:st=$start:d=$fadeDuration" "$output"';
 
-      return _runFFmpeg(cmd, output);
+      return await _runFFmpeg(cmd, output);
     } catch (e) {
       return (false, e.toString());
     }
@@ -174,8 +174,8 @@ class CoreAudioEditingTools {
     // Delay secondary audios
     final delayedInputs = <String>[];
     for (int i = 0; i < others.length; i++) {
-      delayedInputs.add(
-          '[${i + 1}:a]adelay=$startOffsetMs|$startOffsetMs[a${i + 1}]');
+      delayedInputs
+          .add('[${i + 1}:a]adelay=$startOffsetMs|$startOffsetMs[a${i + 1}]');
     }
 
     // Mix base + delayed audios
@@ -235,7 +235,6 @@ class CoreAudioEditingTools {
     return _runFFmpeg(cmd, output);
   }
 }
-
 
 // Features to include.
 // 1) Trim.

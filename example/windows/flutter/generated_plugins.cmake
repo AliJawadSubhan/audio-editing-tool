@@ -5,6 +5,7 @@
 list(APPEND FLUTTER_PLUGIN_LIST
   audioplayers_windows
   downloadsfolder
+  ffmpeg_kit_flutter_new
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST

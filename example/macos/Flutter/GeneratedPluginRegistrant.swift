@@ -8,7 +8,7 @@ import Foundation
 import audioplayers_darwin
 import downloadsfolder
 import ffmpeg_kit_flutter_new
-import file_picker
+import file_picker_darwin
 import path_provider_foundation
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {

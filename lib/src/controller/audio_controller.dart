@@ -75,14 +75,13 @@ class AudioEditingController {
     assert(_filePath != null, "filePath is not set. Use setFilePath first.");
     assert(_tempOutPutPath != null, "tempOutPutPath is not initialized.");
     try {
-      int _audioDuration = 0;
       final result = await CoreAudioEditingTools.getAudioDuration(_filePath!);
 
       if (!result.$1) {
         throw AudioEditingException("Audio Duration error: ${result.$2}");
       } else {
-        _audioDuration = result.$2 as int;
-        return _audioDuration;
+        final audioDuration = result.$2 as int;
+        return audioDuration;
       }
     } catch (e) {
       throw AudioEditingException("Audio Duration error: $e");

@@ -52,9 +52,9 @@ class _ControllerDemoPageState extends State<ControllerDemoPage> {
       _successMessage = null;
     });
     try {
-      final result = await FilePicker.platform.pickFiles(type: FileType.audio);
-      if (result != null && result.files.single.path != null) {
-        _selectedFile = result.files.single.path;
+      final result = await FilePicker.pickFiles(type: FileType.audio);
+      if (result.isNotEmpty && result.single.path != null) {
+        _selectedFile = result.single.path;
         await _controller.init(_selectedFile!);
         _outputFile = _selectedFile;
         log("Audio Pick File Path: ${_controller.filePath}");
@@ -89,28 +89,28 @@ class _ControllerDemoPageState extends State<ControllerDemoPage> {
   }
 
   Future<void> _pickMergeFile() async {
-    final result = await FilePicker.platform.pickFiles(type: FileType.audio);
-    if (result != null && result.files.single.path != null) {
+    final result = await FilePicker.pickFiles(type: FileType.audio);
+    if (result.isNotEmpty && result.single.path != null) {
       setState(() {
-        _mergeFile = result.files.single.path;
+        _mergeFile = result.single.path;
       });
     }
   }
 
   Future<void> _pickWatermarkFile() async {
-    final result = await FilePicker.platform.pickFiles(type: FileType.audio);
-    if (result != null && result.files.single.path != null) {
+    final result = await FilePicker.pickFiles(type: FileType.audio);
+    if (result.isNotEmpty && result.single.path != null) {
       setState(() {
-        _watermarkFile = result.files.single.path;
+        _watermarkFile = result.single.path;
       });
     }
   }
 
   Future<void> _pickCrossfadeFile() async {
-    final result = await FilePicker.platform.pickFiles(type: FileType.audio);
-    if (result != null && result.files.single.path != null) {
+    final result = await FilePicker.pickFiles(type: FileType.audio);
+    if (result.isNotEmpty && result.single.path != null) {
       setState(() {
-        _crossfadeFile = result.files.single.path;
+        _crossfadeFile = result.single.path;
       });
     }
   }
